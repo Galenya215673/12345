@@ -26,7 +26,6 @@ def calculate_derivative(function_str):
         print(f"Произошла ошибка: {e}")
         return None
 
-
 if __name__ == "__main__":
     # Запрашиваем ввод функции у пользователя
     user_input = input("Введите функцию для нахождения её дифференциала: ")
