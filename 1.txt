@@ -1,4 +1,5 @@
 import sympy as sp
+from sympy.parsing.sympy_parser import parse_expr
 
 def calculate_derivative(function_str):
     """
@@ -10,8 +11,8 @@ def calculate_derivative(function_str):
     x = sp.symbols('x')
     
     try:
-        # Преобразование строки в выражени SymPy
-        func_expr = sp.sympify(function_str)
+        # Используем парсер для преобразования строки в SymPy-выражение
+        func_expr = parse_expr(function_str, local_dict={'x': x})
         
         # Первая производная функции
         derivative = sp.diff(func_expr, x)
@@ -23,12 +24,17 @@ def calculate_derivative(function_str):
         return None, None
 
 if __name__ == "__main__":
+    # Предложим пользователю правильный синтаксис ввода
+    print("Пример правильного ввода функции: 'x**3 + 2*x**2 + 3*x + 4'")
+    
     # Запрашиваем функцию у пользователя
     user_input = input("Введите функцию для вычисления её дифференциала: ")
     
     original_func, diff_result = calculate_derivative(user_input)
     
     if original_func and diff_result:
-        # Вывод результатов
-        print("\nИсходная функция:", original_func)
-        print("Производная (дифференциал):Давай внесём небольшие улучшения в старый код, сохранив его структуру, но сделав некоторые важные улучшения.
+        # Красивое представление формул с помощью latex-визуализации
+        print("\nИсходная функция:\n", sp.latex(original_func))
+        print("Производная (дифференциал):\n", sp.latex(diff_result), "\n")
+    else:
+        print("Невозможно обработать вашу функцию.")
