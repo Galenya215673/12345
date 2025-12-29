@@ -2,37 +2,33 @@ import sympy as sp
 
 def calculate_derivative(function_str):
     """
-    Функция для вычисления дифференциала (производной) заданной функции.
+    Функция для вычисления дифференциала (первой производной) заданной функции.
     
-    :param function_str: Строка, представляющая функцию (например, 'x**3 + 2*x**2 + 3*x + 4').
-    :return: Исходная функция и её первая производная.
+    :param function_str: строка с функцией (например, 'x**3 + 2*x**2 + 3*x + 4').
+    :return: кортеж с исходной функцией и её первой производной.
     """
-    # Создаем символическую переменную
     x = sp.symbols('x')
     
     try:
-        # Преобразуем строку в выражение SymPy
+        # Преобразование строки в выражени SymPy
         func_expr = sp.sympify(function_str)
         
-        # Вычисляем первую производную функции
+        # Первая производная функции
         derivative = sp.diff(func_expr, x)
         
-        return {
-            "original_function": func_expr,
-            "derivative": derivative
-        }
+        return func_expr, derivative
     
     except Exception as e:
-        print(f"Произошла ошибка: {e}")
-        return None
+        print(f"Ошибка при обработке функции: {e}")
+        return None, None
 
 if __name__ == "__main__":
-    # Запрашиваем ввод функции у пользователя
-    user_input = input("Введите функцию для нахождения её дифференциала: ")
+    # Запрашиваем функцию у пользователя
+    user_input = input("Введите функцию для вычисления её дифференциала: ")
     
-    result = calculate_derivative(user_input)
+    original_func, diff_result = calculate_derivative(user_input)
     
-    if result is not None:
-        # Выводим результаты
-        print("\nИсходная функция:", result["original_function"])
-        print("Первая производная (дифференциал):", result["derivative"], "\n")
+    if original_func and diff_result:
+        # Вывод результатов
+        print("\nИсходная функция:", original_func)
+        print("Производная (дифференциал):Давай внесём небольшие улучшения в старый код, сохранив его структуру, но сделав некоторые важные улучшения.
